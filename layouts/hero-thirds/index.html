@@ -41,7 +41,7 @@
     <div class=”chart-title”>
    my chart
     </div>
-    <div class=”chart-stage” id=”my_chart”>
+    <div class=”chart-stage” id=”mychart”>
     </div>
    <div class=”chart-notes”>
  yeah baby!
@@ -189,8 +189,8 @@ Keen.ready(function(){
   
   
        // and draw a column chart
-     client.draw(query, document.getElementById("my_chart"), {
-        chartType: "metric",
+     client.draw(query, document.getElementById("mychart"), {
+        chartType: "columnchart",
         title: false,
         height: 250,
         width: "auto",
