@@ -225,13 +225,28 @@ Keen.ready(function(){
         height: 250,
         width: "auto",
         chartOptions: {
-          chartOptions: {
-            isStacked: true
+    chartOptions: {
+      legend: { position: "none" },
+      tooltip: { trigger: 'none' },
+      chartArea: {
+        left: "5%",
+        top: "5%",
+        height: "85%",
+        width: "93%"
+      },
+      bar: {
+        groupWidth: "85%"
+      },
+      isStacked: true
           }
         }
       });
+
+
  });
 
+  
+  
  </script>
 </body>
 </html>
