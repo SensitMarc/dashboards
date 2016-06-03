@@ -192,6 +192,18 @@ Keen.ready(function(){
     timezone: "UTC"
   });
   
+    var queryy = new Keen.Query("count", {
+    eventCollection: "collect",
+    filters: [
+    {
+        "operator": "eq",
+        "property_name": "coreid",
+        "property_value": "51ff67065067545711360687"
+    }
+],
+    timeframe: "this_30_days",
+    timezone: "UTC"
+  });
   
        // and draw a column chart
      client.draw(query, document.getElementById("mychart"), {
@@ -206,7 +218,19 @@ Keen.ready(function(){
         }
       });
  });
- 
+  // and draw a column chart
+     client.draw(queryy, document.getElementById("mychartt"), {
+        chartType: "metric",
+        title: false,
+        height: 250,
+        width: "auto",
+        chartOptions: {
+          chartOptions: {
+            isStacked: true
+          }
+        }
+      });
+ });
 
  </script>
 </body>
