@@ -58,7 +58,7 @@
             Cell Title
           </div>
           <div class="chart-stage">
-            <div id="mychart">
+            <div id="mychart2">
             
             </div>
           </div>
@@ -195,6 +195,20 @@ Keen.ready(function(){
   
        // and draw a column chart
      client.draw(query, document.getElementById("mychart"), {
+        chartType: "metric",
+        title: false,
+        height: 250,
+        width: "auto",
+        chartOptions: {
+          chartOptions: {
+            isStacked: true
+          }
+        }
+      });
+ });
+ 
+ // and draw a column chart
+     client.draw(query, document.getElementById("mychart2"), {
         chartType: "metric",
         title: false,
         height: 250,
