@@ -195,7 +195,7 @@ Keen.ready(function(){
     timezone: "UTC"
   });
   
-    var queryy = new Keen.Query("count", {
+    var queryy = new Keen.Query("sum", {
     eventCollection: "collect",
     filters: [
     {
@@ -233,7 +233,7 @@ Keen.ready(function(){
         }
       });
       
-client.draw(query, document.getElementById("mycharttt"), {
+client.draw(queryy, document.getElementById("mycharttt"), {
   chartType: "metric",
   title: false,
   height: 250,
