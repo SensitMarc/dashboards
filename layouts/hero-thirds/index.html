@@ -58,7 +58,7 @@
             Cell Title
           </div>
           <div class="chart-stage">
-            <div id="mychartt">
+            <div id="mycharttt">
             
             </div>
           </div>
@@ -229,6 +229,16 @@ Keen.ready(function(){
           }
         }
       });
+      
+
+client.draw(total_pageviews, document.getElementById("mycharttt"), {
+  chartType: "columnchart",
+  title: "Daily revenue (7 days)",
+  chartOptions: {
+    isStacked: true
+  }
+});
+
  });
 
 
