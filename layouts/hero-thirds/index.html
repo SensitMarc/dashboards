@@ -232,9 +232,13 @@ Keen.ready(function(){
         }
       });
       
-
-
-
+client.draw(query, document.getElementById("mycharttt"), {
+  chartType: "columnchart",
+  title: "Daily revenue (7 days)",
+  chartOptions: {
+    isStacked: true
+  }
+});
 
  });
 
