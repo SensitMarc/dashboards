@@ -81,10 +81,9 @@
            </div>
           <div class="chart-notes">
             Notes about this chart
-            </div>
           </div>
         </div>
-       </div>
+      </div>
        
       <div class="col-sm-6 col-md-4">
         <div class="chart-wrapper">
@@ -236,8 +235,12 @@ Keen.ready(function(){
 client.draw(query, document.getElementById("mycharttt"), {
   chartType: "columnchart",
   title: "Daily revenue (7 days)",
+  height: 250,
+  width: "auto",
   chartOptions: {
-    isStacked: true
+     chartOptions: {
+      isStacked: true
+          }
   }
 });
 
