@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
   
-   <script src='https://api.mapbox.com/mapbox-gl-js/v0.19.1/mapbox-gl.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.19.1/mapbox-gl.js'></script>
   <link href='https://api.mapbox.com/mapbox-gl-js/v0.19.1/mapbox-gl.css' rel='stylesheet' />
           
         
@@ -102,13 +102,14 @@
             </div>
           </div>
           <div class="chart-stage">
-            <div id="map"></div>
+             <div id='map' style='width: 400px; height: 300px;'></div>
           </div>
           <div class="chart-notes">
           </div>
         </div>
       </div>
     </div>
+
 
   
   
@@ -274,21 +275,16 @@ client.draw(queryy, document.getElementById("mycharttt"), {
       isStacked: true
           }
   }
-
   });
 
- </script>
-          
-          
- <div id='map' style='width: 400px; height: 300px;'></div>
-<script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03ZmhweGNqZzAifQ.YCcLyhXq7MXpRJDXojNtCg';
   var map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v8'
   });
-</script>
-        
 
+  });
+ </script>
+ 
 </body>
 </html>
