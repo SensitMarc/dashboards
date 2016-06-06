@@ -5,6 +5,11 @@
   <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
   <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
+  
+   <script src='https://api.mapbox.com/mapbox-gl-js/v0.19.1/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.19.1/mapbox-gl.css' rel='stylesheet' />
+          
+        
 </head>
 <body class="application">
 
@@ -269,188 +274,21 @@ client.draw(queryy, document.getElementById("mycharttt"), {
       isStacked: true
           }
   }
-});
 
-
-  // ----------------------------------------
-  // Mapbox - Active Users
-  // ----------------------------------------
-  var tframe = "previous_7_days";
-
-  var DEFAULTS = {
-    coordinates: {
-      lat: 37.77350,
-      lng: -122.41104
-    },
-    zoom: 11
-  };
-
-  var initialize,
-      map,
-      markerStart = DEFAULTS.coordinates;
-
-  var activeMapData,
-      heat;
-      
-  function setActiveButton(button) {
-    var classButtonNormal = "btn btn-default";
-    var classButtonSelected = "btn btn-primary";
-
-    switch (button) {
-    default:
-    case "7days":
-      document.getElementById("7days").className = classButtonSelected;
-      document.getElementById("14days").className = classButtonNormal;
-      document.getElementById("28days").className = classButtonNormal;
-      break;
-    case "14days":
-      document.getElementById("7days").className = classButtonNormal;
-      document.getElementById("14days").className = classButtonSelected;
-      document.getElementById("28days").className = classButtonNormal;
-      break;
-    case "28days":
-      document.getElementById("7days").className = classButtonNormal;
-      document.getElementById("14days").className = classButtonNormal;
-      document.getElementById("28days").className = classButtonSelected;
-      break;
-    }
-  }
-
-  initialize = function() {
-    setActiveButton("7days");
-
-    L.mapbox.accessToken = "pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03ZmhweGNqZzAifQ.YCcLyhXq7MXpRJDXojNtCg";
-    map = L.mapbox.map("map", "mapbox.streets", {
-      attributionControl: true,
-      center: [markerStart.lat, markerStart.lng],
-      zoom: DEFAULTS.zoom
-    });
-
-    heat = L.heatLayer([], { maxZoom: 14 });
-
-    activeMapData = L.layerGroup().addTo(map);
-
-    map.attributionControl.addAttribution('<a href="https://keen.io/">Custom Analytics by Keen IO</a>');
-
-    var geoFilter = [];
-    geoFilter.push({
-      property_name : "keen.location.coordinates",
-      operator : "within",
-      property_value: {
-        coordinates: [ -122.41104, 37.77350 ],
-        max_distance_miles: 10
-      }
-    });
-
-    var scoped_events = new Keen.Query("select_unique", {
-      eventCollection: "user_action",
-      targetProperty: "keen.location.coordinates",
-      timeframe: tframe,
-      filters: geoFilter
-    });
-    var result = geoProject.run(scoped_events, function(err, res){
-      console.log("events", res);
-      activeMapData.clearLayers();
-
-      Keen.utils.each(res.result, function(coord, index){
-        var em = L.marker(new L.LatLng(coord[1], coord[0]), {
-          icon: L.mapbox.marker.icon()
-        }).addTo(activeMapData);
-      });
-
-      activeMapData.eachLayer(function(l) {
-          heat.addTo(map).addLatLng(l.getLatLng());
-      });
-      activeMapData.clearLayers();
-    });
-
-
-    var newgeoFilter = [];
-    function resize(geo){
-
-      geo = [];
-
-      heat.setLatLngs([]);
-
-      var center = map.getCenter();
-      var zoom = map.getZoom();
-
-      z = zoom-1;
-      if (zoom === 0){
-        radius = false;
-      }
-      else {
-        radius = 10000/Math.pow(2,z);
-      }
-      console.log(center, radius);
-
-
-
-      geo.push({
-        property_name : "keen.location.coordinates",
-        operator : "within",
-        property_value: {
-          coordinates: [ center.lng, center.lat ],
-          max_distance_miles: radius
-        }
-
-      });
-      return geo;
-    }
-
-
-    map.on('zoomend', function(e) {
-      newgeoFilter = resize(newgeoFilter);
-      scoped_events.set({ filters: newgeoFilter });
-      result.refresh();
-    });
-    map.on('dragend', function(e) {
-      newgeoFilter = resize(newgeoFilter);
-      scoped_events.set({ filters: newgeoFilter });
-      result.refresh();
-    });
-
-
-
-    document.getElementById("14days").addEventListener("click", function() {
-      setActiveButton("14days");
-      newgeoFilter = resize(newgeoFilter);
-      scoped_events.set({ filters: newgeoFilter,
-                          timeframe: "previous_14_days" });
-      result.refresh();
-    });
-
-    document.getElementById("28days").addEventListener("click", function() {
-      setActiveButton("28days");
-      newgeoFilter = resize(newgeoFilter);
-      scoped_events.set({ filters: newgeoFilter,
-                          timeframe: "previous_28_days" });
-      result.refresh();
-    });
-
-    document.getElementById("7days").addEventListener("click", function() {
-      setActiveButton("7days");
-      newgeoFilter = resize(newgeoFilter);
-      scoped_events.set({ filters: newgeoFilter,
-                          timeframe: "previous_7_days" });
-      result.refresh();
-    });
-
-  };
-
-
-
-
-initialize();
- });
-
+  });
 
  </script>
- 
- <!-- Mapbox.js Assets -->
-  <script type="text/javascript" src='https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.css' rel='stylesheet' />
-  <script type="text/javascript" src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-heat/v0.1.0/leaflet-heat.js'></script>
-  
+          
+          
+ <div id='map' style='width: 400px; height: 300px;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03ZmhweGNqZzAifQ.YCcLyhXq7MXpRJDXojNtCg';
+  var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v8'
+  });
+</script>
+        
+
 </body>
 </html>
