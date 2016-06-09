@@ -6,6 +6,9 @@
   <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
 
+<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
+<div id='map'></div>
+
 <meta charset=utf-8 />
 <title>Leaflet Label</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
@@ -14,6 +17,9 @@
 <style>
   body { margin:0; padding:0; }
   #map { position:absolute; top:0; bottom:0; width:100%; }
+  
+
+
 </style>          
         
 </head>
@@ -87,7 +93,7 @@
              Cell Title
             </div>
           <div class="chart-stage">
-             <div id="map">
+             <div id="map" style="width: 1200px; height: 250px;">
                
           </div>
           </div>
@@ -288,8 +294,8 @@ client.draw(queryy, document.getElementById("mycharttt"), {
 </script>
  
  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
-<div id='map'></div>
+
+
 
 <script>
 L.mapbox.accessToken = 'pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03ZmhweGNqZzAifQ.YCcLyhXq7MXpRJDXojNtCg';
