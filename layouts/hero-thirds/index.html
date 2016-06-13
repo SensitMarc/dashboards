@@ -302,12 +302,9 @@ L.mapbox.accessToken = 'pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03Zmhwe
    
     var map = L.mapbox.map('map', 'mapbox.streets', {
         center: [46.5653, -66.4619],
-        layer: "earthquake-layer",
         zoom: 2
     });
     
-
-
 
     L.marker([46.5653, -66.4619]).bindLabel('New Brunswick 1340kWh/mth').addTo(map);
     L.marker([56.1304, -106.3468]).bindLabel('Canada 900kWh/mth').addTo(map);
@@ -358,6 +355,8 @@ mapboxgl.util.getJSON(feed, function(err, data) {
         }
     });
 });
+
+addLayer('Earthquake-layer', 'earthquake-layer');
 
 </script>
 </body>
