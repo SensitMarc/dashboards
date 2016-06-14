@@ -296,7 +296,31 @@ var map = new mapboxgl.Map({
     zoom: 9 // starting zoom
 });
 
+map.on('load', function () {
+    map.addSource('museums', {
+        type: 'vector',
+        url: 'mapbox://mapbox.2opop9hr'
+    });
+    
+map.addLayer({
+        'id': 'museums',
+        'type': 'circle',
+        'source': 'museums',
+        'layout': {
+            'visibility': 'visible'
+        },
+        'paint': {
+            'circle-radius': 8,
+            'circle-color': 'rgba(55,148,179,1)'
+        },
+        'source-layer': 'museum-cusco'
+    });
 
+    map.addSource('contours', {
+        type: 'vector',
+        url: 'mapbox://mapbox.mapbox-terrain-v2'
+    });
+    
 </script>
 </body>
 </html>
