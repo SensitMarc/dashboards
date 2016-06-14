@@ -341,10 +341,10 @@ map.on('load', function(){
                 "circle-radius": 18
             },
             "filter": i == 0 ?
-                [">=", "point_count", layer[0]] :
+                [">=", "point_avg", layer[0]] :
                 ["all",
-                    [">=", "point_count", layer[0]],
-                    ["<", "point_count", layers[i - 1][0]]]
+                    [">=", "point_avg", layer[0]],
+                    ["<", "point_avg", layers[i - 1][0]]]
         });
     });
 
@@ -354,7 +354,7 @@ map.on('load', function(){
         "type": "symbol",
         "source": "earthquakes",
         "layout": {
-            "text-field": "{point_count}",
+            "text-field": "{point_avg}",
             "text-font": [
                     "DIN Offc Pro Medium",
                     "Arial Unicode MS Bold"
