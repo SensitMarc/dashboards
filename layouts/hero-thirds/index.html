@@ -6,17 +6,16 @@
   <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="../../assets/css/keen-dashboards.css" />
 
-<meta charset=utf-8 />
-<title>Leaflet Label</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-
-  <meta charset='utf-8' />
+<meta charset='utf-8' />
     <title></title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+
 
 
 </head>
@@ -290,73 +289,16 @@ client.draw(queryy, document.getElementById("mycharttt"), {
     
 </script>
 
- 
- <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-label/v0.2.1/leaflet.label.css' rel='stylesheet' />
-
-
-
+ <div id='map'></div>
 <script>
-L.mapbox.accessToken = 'pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03ZmhweGNqZzAifQ.YCcLyhXq7MXpRJDXojNtCg';
-
-   
-    var map = L.mapbox.map('map', 'mapbox.streets', {
-        center: [46.5653, -66.4619],
-        zoom: 2
-    });
-    
-
-    L.marker([46.5653, -66.4619]).bindLabel('New Brunswick 1340kWh/mth').addTo(map);
-    L.marker([56.1304, -106.3468]).bindLabel('Canada 900kWh/mth').addTo(map);
-    L.marker([44.6820, -63.7443]).bindLabel('Nova Scotia TBD kWh/mth').addTo(map);
-    L.marker([46.5107, -63.4168]).bindLabel('PEI TBD kWh/mth').addTo(map);
-    L.marker([46.8139, -71.2080]).bindLabel('Quebec TBD kWh/mth').addTo(map);
-    L.marker([51.2538, -85.3232]).bindLabel('Ontario TBD kWh/mth').addTo(map);
-    L.marker([53.1355, -57.6604]).bindLabel('NFLD TBD kWh/mth').addTo(map);
-    L.marker([53.7609, -98.8139]).bindLabel('Manitoba TBD kWh/mth').addTo(map);
-    L.marker([52.9399, -106.4509]).bindLabel('Saskatchewan TBD kWh/mth').addTo(map);
-    L.marker([53.9333, -116.5765]).bindLabel('Alberta TBD kWh/mth').addTo(map);
-    L.marker([53.7267, -127.6476]).bindLabel('Brtish Columbia TBD kWh/mth').addTo(map);
-    L.marker([64.2823, -135.0000]).bindLabel('Yukon TBD kWh/mth').addTo(map);
-    L.marker([64.8255, -124.8457]).bindLabel('NWT TBD kWh/mth').addTo(map);
-    
- </script>
-
-<script>
-
-  var feed = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson';
-
-mapboxgl.util.getJSON(feed, function(err, data) {
-    // Add response data as source.
-    map.addSource('earthquakes', {
-        type: 'geojson',
-        data: data
-    });
-
-    // Add response data as source.
-    map.addLayer({
-        "id": "earthquake-layer",
-        "type": "circle",
-        "source": "earthquakes",
-        "paint": {
-            "circle-color": "#f00",
-            "circle-radius": {
-                "property": "mag",
-                "base": 1.8,
-                "stops": [
-                    [{zoom: 0,  value: 2}, 1],
-                    [{zoom: 0,  value: 8}, 40],
-                    [{zoom: 11, value: 2}, 10],
-                    [{zoom: 11, value: 8}, 2400],
-                    [{zoom: 20, value: 2}, 20],
-                    [{zoom: 20, value: 8}, 6000]
-                ]
-            }
-        }
-    });
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03ZmhweGNqZzAifQ.YCcLyhXq7MXpRJDXojNtCg';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
+    center: [-74.50, 40], // starting position
+    zoom: 9 // starting zoom
 });
 
-addLayer('Earthquake-layer', 'earthquake-layer');
 
 </script>
 </body>
