@@ -285,85 +285,85 @@ client.draw(queryy, document.getElementById("mycharttt"), {
 });
     
 </script>
-<nav id="menu"></nav>
- <div id='map'></div>
+
+<div id='map'></div>
+
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03ZmhweGNqZzAifQ.YCcLyhXq7MXpRJDXojNtCg';
 var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/mapbox/streets-v8', //stylesheet location
-    center: [-74.50, 40], // starting position
-    zoom: 9 // starting zoom
+    container: 'map',
+    style: 'mapbox://styles/mapbox/dark-v8',
+    center: [-103.59179687498357, 40.66995747013945],
+    zoom: 3,
 });
 
-map.on('load', function () {
-    map.addSource('museums', {
-        type: 'vector',
-        url: 'mapbox://mapbox.2opop9hr'
-    });
-    map.addLayer({
-        'id': 'museums',
-        'type': 'circle',
-        'source': 'museums',
-        'layout': {
-            'visibility': 'visible'
-        },
-        'paint': {
-            'circle-radius': 8,
-            'circle-color': 'rgba(55,148,179,1)'
-        },
-        'source-layer': 'museum-cusco'
+map.on('load', function(){
+
+    // Add a new source from our GeoJSON data and set the
+    // 'cluster' option to true.
+    map.addSource("earthquakes", {
+        type: "geojson",
+        // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+        // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+        data: "https://www.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson",
+        cluster: true,
+        clusterMaxZoom: 14, // Max zoom to cluster points on
+        clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
     });
 
-    map.addSource('contours', {
-        type: 'vector',
-        url: 'mapbox://mapbox.mapbox-terrain-v2'
-    });
+    // Use the earthquakes source to create five layers:
+    // One for non-clustered markers, three for each cluster category,
+    // and one for cluster labels.
     map.addLayer({
-        'id': 'contours',
-        'type': 'line',
-        'source': 'contours',
-        'source-layer': 'contour',
-        'layout': {
-            'visibility': 'visible',
-            'line-join': 'round',
-            'line-cap': 'round'
-        },
-        'paint': {
-            'line-color': '#877b59',
-            'line-width': 1
+        "id": "non-cluster-markers",
+        "type": "symbol",
+        "source": "earthquakes",
+        "layout": {
+            "icon-image": "marker-15"
+        }
+    });
+
+    // Display the earthquake data in three layers, each filtered to a range of
+    // count values. Each range gets a different fill color.
+    var layers = [
+        [150, '#f28cb1'],
+        [20, '#f1f075'],
+        [0, '#51bbd6']
+    ];
+
+    layers.forEach(function (layer, i) {
+        map.addLayer({
+            "id": "cluster-" + i,
+            "type": "circle",
+            "source": "earthquakes",
+            "paint": {
+                "circle-color": layer[1],
+                "circle-radius": 18
+            },
+            "filter": i == 0 ?
+                [">=", "point_count", layer[0]] :
+                ["all",
+                    [">=", "point_count", layer[0]],
+                    ["<", "point_count", layers[i - 1][0]]]
+        });
+    });
+
+    // Add a layer for the clusters' count labels
+    map.addLayer({
+        "id": "cluster-count",
+        "type": "symbol",
+        "source": "earthquakes",
+        "layout": {
+            "text-field": "{point_count}",
+            "text-font": [
+                    "DIN Offc Pro Medium",
+                    "Arial Unicode MS Bold"
+                ],
+            "text-size": 12
         }
     });
 });
 
-addLayer('Contours', 'contours');
-addLayer('Museums', 'museums');
-
-function addLayer(name, id) {
-    var link = document.createElement('a');
-    link.href = '#';
-    link.className = 'active';
-    link.textContent = name;
-
-    link.onclick = function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        var visibility = map.getLayoutProperty(id, 'visibility');
-
-        if (visibility === 'visible') {
-            map.setLayoutProperty(id, 'visibility', 'none');
-            this.className = '';
-        } else {
-            this.className = 'active';
-            map.setLayoutProperty(id, 'visibility', 'visible');
-        }
-    };
-
-    var layers = document.getElementById('menu');
-    layers.appendChild(link);
-}
-    
 </script>
 </body>
 </html>
