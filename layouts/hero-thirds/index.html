@@ -333,7 +333,7 @@ map.on('load', function(){
 
     layers.forEach(function (layer, i) {
         map.addLayer({
-            "id": "cluster-" + (i/i+1),
+            "id": "cluster-" + i,
             "type": "circle",
             "source": "earthquakes",
             "paint": {
