@@ -163,6 +163,22 @@ Keen.ready(function(){
     timezone: "UTC"
   });
   
+      var queryhourlykwhr = new Keen.Query("count", {
+    eventCollection: "collect",
+        groupBy: [
+    "event"
+],
+    filters: [
+    {
+        "operator": "eq",
+        "property_name": "coreid",
+        "property_value": "51ff67065067545711360687"
+    }
+],
+    interval: "daily",
+    timeframe: "this_1_days",
+    timezone: "UTC"
+  });
        // and draw a column chart
      client.draw(query, document.getElementById("mychart"), {
         chartType: "metric",
@@ -200,7 +216,7 @@ client.draw(queryy, document.getElementById("mycharttt"), {
   }
   });
 
-client.draw(queryy, document.getElementById("hourlykwhr"), {
+client.draw(queryhourlykwhr, document.getElementById("hourlykwhr"), {
   chartType: "columnchart",
   title: false,
   height: 250,
