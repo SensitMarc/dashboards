@@ -92,10 +92,10 @@
       <div class="col-sm-6 col-md-4">
         <div class="chart-wrapper">
           <div class="chart-title">
-            DAILY KWHR USAGE
+            HOURLY KWHR USAGE
           </div>
           <div class="chart-stage">
-            <div id="mycharttt">
+            <div id="hourlykwhr">
             
             </div>
           </div>
@@ -200,6 +200,17 @@ client.draw(queryy, document.getElementById("mycharttt"), {
   }
   });
 
+client.draw(queryy, document.getElementById("hourlykwhr"), {
+  chartType: "columnchart",
+  title: false,
+  height: 250,
+  width: "auto",
+  chartOptions: {
+     chartOptions: {
+      isStacked: true
+          }
+  }
+  });
 });
     
 </script>
