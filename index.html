@@ -179,6 +179,19 @@ Keen.ready(function(){
     timeframe: "this_1_days",
     timezone: "UTC"
   });
+  
+  var state = new Keen.Query("count-unique", {
+    eventCollection: "collect",
+    filters: [
+    {
+        "operator": "eq",
+        "property_name": "coreid",
+        "property_value": "51ff67065067545711360687"
+    }
+],
+    timeframe: "this_1_days",
+    timezone: "UTC"
+  });
        // and draw a column chart
      client.draw(query, document.getElementById("mychart"), {
         chartType: "metric",
@@ -227,6 +240,18 @@ client.draw(queryhourlykwhr, document.getElementById("hourlykwhr"), {
           }
   }
   });
+  
+  client.draw(state, document.getElementById("state"), {
+        chartType: "metric",
+        title: false,
+        height: 250,
+        width: "auto",
+          chartOptions: {
+            chartOptions: {
+            isStacked: true
+          }
+        }
+      });
 });
     
 </script>
