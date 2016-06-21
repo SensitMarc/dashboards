@@ -150,7 +150,7 @@ var client = new Keen({
 Keen.ready(function(){
   
   var query = new Keen.Query("count", {
-    eventCollection: "collect",
+    eventCollection: "kWhr",
     filters: [
     {
         "operator": "eq",
@@ -163,7 +163,7 @@ Keen.ready(function(){
   });
   
     var queryy = new Keen.Query("count", {
-    eventCollection: "collect",
+    eventCollection: "kWhr",
         groupBy: [
     "event"
 ],
@@ -180,7 +180,7 @@ Keen.ready(function(){
   });
   
       var queryhourlykwhr = new Keen.Query("count", {
-    eventCollection: "collect",
+    eventCollection: "kWhr",
         groupBy: [
     "event"
 ],
@@ -197,7 +197,7 @@ Keen.ready(function(){
   });
   
   var state = new Keen.Query("count_unique", {
-    eventCollection: "collect",
+    eventCollection: "kWhr",
     targetProperty: "event",
     filters: [
     {
