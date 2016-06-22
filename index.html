@@ -218,7 +218,7 @@ Keen.ready(function(){
        // and draw a column chart
      client.draw(today, document.getElementById("mychart"), {
         chartType: "metric",
-        title: false,
+        title: "today",
         height: 250,
         width: "auto",
         chartOptions: {
@@ -230,7 +230,7 @@ Keen.ready(function(){
       
            client.draw(month, document.getElementById("mychartt"), {
         chartType: "metric",
-        title: false,
+        title: "this month",
         height: 250,
         width: "auto",
           chartOptions: {
@@ -242,7 +242,7 @@ Keen.ready(function(){
       
 client.draw(monthchart, document.getElementById("mycharttt"), {
   chartType: "columnchart",
-  title: false,
+  title: "monthly",
   height: 250,
   width: "auto",
   chartOptions: {
@@ -254,7 +254,7 @@ client.draw(monthchart, document.getElementById("mycharttt"), {
 
 client.draw(queryhourlykwhr, document.getElementById("hourlykwhr"), {
   chartType: "columnchart",
-  title: false,
+  title: "hourly",
   height: 250,
   width: "auto",
   chartOptions: {
