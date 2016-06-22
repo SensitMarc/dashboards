@@ -112,7 +112,7 @@
             LEADERBOARD
           </div>
           <div class="chart-stage">
-            <div id="hourlykwhr">
+            <div id="leader">
             
             </div>
           </div>
@@ -232,6 +232,17 @@ Keen.ready(function(){
     timeframe: "this_1_days",
     timezone: "UTC"
   });
+  
+    var leader = new Keen.Query("count", {
+    eventCollection: "kWhr",
+    groupBy: [
+    "coreid"
+],
+    timeframe: "this_30_days",
+    timezone: "UTC"
+  });
+  
+  
        // and draw a column chart
      client.draw(today, document.getElementById("mychart"), {
         chartType: "metric",
@@ -281,6 +292,7 @@ client.draw(queryhourlykwhr, document.getElementById("hourlykwhr"), {
   }
   });
   
+
   client.draw(state, document.getElementById("state"), {
         chartType: "metric",
        title: "state", 
