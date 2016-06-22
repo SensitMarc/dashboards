@@ -150,7 +150,7 @@ var client = new Keen({
 
 Keen.ready(function(){
   
-  var query = new Keen.Query("count", {
+  var today = new Keen.Query("count", {
     eventCollection: "kWhr",
     filters: [
     {
@@ -163,12 +163,10 @@ Keen.ready(function(){
     timezone: "UTC"
   });
   
-    var queryy = new Keen.Query("count", {
+    var month = new Keen.Query("count", {
     eventCollection: "kWhr",
-        groupBy: [
-    "event"
-],
 
+    interval:"daily",
     timeframe: "this_30_days",
     timezone: "UTC"
   });
@@ -205,7 +203,7 @@ Keen.ready(function(){
     timezone: "UTC"
   });
        // and draw a column chart
-     client.draw(query, document.getElementById("mychart"), {
+     client.draw(today, document.getElementById("mychart"), {
         chartType: "metric",
         title: false,
         height: 250,
@@ -217,7 +215,7 @@ Keen.ready(function(){
         }
       });
       
-           client.draw(queryy, document.getElementById("mychartt"), {
+           client.draw(month, document.getElementById("mychartt"), {
         chartType: "metric",
         title: false,
         height: 250,
