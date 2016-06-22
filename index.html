@@ -177,7 +177,7 @@ Keen.ready(function(){
     }
 ],
     timeframe: "this_1_days",
-    timezone: "UTC-4"
+    timezone: "America/Sao_Paulo"
   });
   
   var month = new Keen.Query("count", {
@@ -190,7 +190,7 @@ Keen.ready(function(){
     }
 ],
     timeframe: "this_30_days",
-    timezone: "UTC-4"
+    timezone: "America/Sao_Paulo"
   });
   
     var monthchart = new Keen.Query("count", {
@@ -198,7 +198,7 @@ Keen.ready(function(){
 
     interval:"daily",
     timeframe: "this_30_days",
-    timezone: "UTC-4"
+    timezone: "America/Sao_Paulo"
   });
   
       var queryhourlykwhr = new Keen.Query("count", {
@@ -215,7 +215,7 @@ Keen.ready(function(){
 ],
     interval: "hourly",
     timeframe: "this_1_days",
-    timezone: "UTC-4"
+    timezone: "America/Sao_Paulo"
   });
   
   var state = new Keen.Query("count_unique", {
@@ -230,7 +230,7 @@ Keen.ready(function(){
     }
 ],
     timeframe: "this_1_days",
-    timezone: "UTC-4"
+    timezone: "America/Sao_Paulo"
   });
   
     var leader = new Keen.Query("count", {
@@ -239,7 +239,7 @@ Keen.ready(function(){
     "coreid"
 ],
     timeframe: "this_30_days",
-    timezone: "UTC-4"
+    timezone: "America/Sao_Paulo"
   });
   
   
