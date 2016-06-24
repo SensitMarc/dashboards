@@ -233,6 +233,17 @@ Keen.ready(function(){
     timezone: "America/Sao_Paulo"
   });
   
+  var state = new Keen.Query("count", {
+    eventCollection: "sensee",
+    groupBy: [
+    "event"
+],
+    interval: "minutely",
+    timeframe: "this_1_hours",
+    timezone: "UTC"
+  });
+  
+  
     var leader = new Keen.Query("count", {
     eventCollection: "kWhr",
     groupBy: [
@@ -306,7 +317,7 @@ client.draw(leader, document.getElementById("leader"), {
   
   
   client.draw(state, document.getElementById("state"), {
-        chartType: "metric",
+        chartType: "columnchart",
        title: "state", 
         height: 250,
         width: "auto",
