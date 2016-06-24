@@ -261,6 +261,18 @@ Keen.ready(function(){
     timezone: "UTC"
   });
   
+  var cycle = new Keen.Query("count", {
+    eventCollection: "sensee",
+    filters: [
+    {
+        "operator": "eq",
+        "property_name": "event",
+        "property_value": "on"
+    }
+],
+    timeframe: "this_1_days",
+    timezone: "UTC"
+  });
   
     var leader = new Keen.Query("count", {
     eventCollection: "kWhr",
@@ -285,7 +297,7 @@ Keen.ready(function(){
         }
       });
       
-           client.draw(month, document.getElementById("mychartt"), {
+      client.draw(month, document.getElementById("mychartt"), {
         chartType: "metric",
         title: "this month",
         height: 250,
@@ -297,17 +309,28 @@ Keen.ready(function(){
         }
       });
       
-client.draw(monthchart, document.getElementById("mycharttt"), {
-  chartType: "columnchart",
-  title: "daily",
-  height: 250,
-  width: "auto",
-  chartOptions: {
-     chartOptions: {
-      isStacked: true
+      client.draw(state, document.getElementById("state"), {
+        chartType: "metric",
+        title: "today",
+        height: 250,
+        width: "auto",
+          chartOptions: {
+            chartOptions: {
+            isStacked: true
           }
-  }
-  });
+        }
+      });      
+      client.draw(monthchart, document.getElementById("mycharttt"), {
+        chartType: "columnchart",
+        title: "daily",
+        height: 250,
+        width: "auto",
+          chartOptions: {
+            chartOptions: {
+            isStacked: true
+          }
+        }
+      });
 
 client.draw(queryhourlykwhr, document.getElementById("hourlykwhr"), {
   chartType: "columnchart",
