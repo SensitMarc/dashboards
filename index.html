@@ -275,9 +275,16 @@ Keen.ready(function(){
   });
   
     var leader = new Keen.Query("count", {
-    eventCollection: "kWhr",
+    eventCollection: "sensee",
+    filters: [
+    {
+        "operator": "eq",
+        "property_name": "event",
+        "property_value": "name"
+    }
+],
     groupBy: [
-    "coreid"
+    "data"
 ],
     timeframe: "this_30_days",
     timezone: "America/Sao_Paulo"
