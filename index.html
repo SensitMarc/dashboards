@@ -243,13 +243,13 @@ Keen.ready(function(){
   });
   
   var state = new Keen.Query("count", {
-    eventCollection: "sensee",
+    eventCollection: "kWhr",
     groupBy: [
     "event"
 ],
-    interval: "minutely",
-    timeframe: "this_12_hours",
-    timezone: "America/Sao_Paulo"
+    interval: "hourly",
+    timeframe: "this_7_days",
+    timezone: "UTC"
   });
   
   var cycle = new Keen.Query("count", {
