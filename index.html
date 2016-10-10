@@ -83,7 +83,8 @@
             Cell Title
           </div>
           <div class="chart-stage">
-            <img data-src="holder.js/100%x120/white">
+          <div id="lastmonthchart">
+          </div>
           </div>
           <div class="chart-notes">
             Notes about this chart
@@ -144,6 +145,19 @@ Keen.ready(function(){
     }
 ],
     timeframe: "this_30_days",
+    timezone: "America/Sao_Paulo"
+  });
+  
+    var lastmonth = new Keen.Query("count", {
+    eventCollection: "kWhr",
+    filters: [
+    {
+        "operator": "eq",
+        "property_name": "coreid",
+        "property_value": "48ff6e065067555013541287"
+    }
+],
+    timeframe: "last_30_days",
     timezone: "America/Sao_Paulo"
   });
   
@@ -252,6 +266,18 @@ Keen.ready(function(){
         }
       });
       
+        client.draw(lastmonth, document.getElementById("lastmonthchart), {
+        chartType: "metric",
+        title: "this month",
+        height: "250",
+        width: "auto",
+          chartOptions: {
+            chartOptions: {
+            isStacked: true
+          }
+        }
+      });
+  
       client.draw(cycle, document.getElementById("cycle"), {
         chartType: "metric",
         title: "today",
