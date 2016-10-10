@@ -161,6 +161,13 @@ Keen.ready(function(){
   
     var monthchart = new Keen.Query("count", {
     eventCollection: "kWhr",
+          filters: [
+    {
+        "operator": "eq",
+        "property_name": "coreid",
+        "property_value": "51ff67065067545711360687"
+    }
+],
     interval:"daily",
     timeframe: "this_7_days",
     timezone: "America/Sao_Paulo"
