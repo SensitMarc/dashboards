@@ -280,7 +280,14 @@ Keen.ready(function(){
     timezone: "America/Sao_Paulo"
   });
   
-  
+  var temperature = new Keen.Query("maximum", {
+    eventCollection: "kWhr",
+    interval: "hourly",
+    targetProperty: "temperature",
+    timeframe: "this_1_days",
+    timezone: "America/Sao_Paulo"
+  });
+    
        // and draw a column chart
      client.draw(today, document.getElementById("mychart"), {
         chartType: "metric",
@@ -368,6 +375,21 @@ client.draw(leader, document.getElementById("leader"), {
   client.draw(state, document.getElementById("state"), {
         chartType: "columnchart",
        title: "kWhr", 
+        height: "250",
+        width: "auto",
+          chartOptions: {
+            chartOptions: {
+            isStacked: true
+          }
+        }
+      });
+    
+      });
+  
+  
+  client.draw(temperature, document.getElementById("temperature"), {
+        chartType: "line",
+       title: "Temperature outside", 
         height: "250",
         width: "auto",
           chartOptions: {
