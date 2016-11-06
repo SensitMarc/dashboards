@@ -283,13 +283,6 @@ Keen.ready(function(){
   
   var temperature = new Keen.Query("maximum", {
     eventCollection: "kWhr",
-    filters: [
-    {
-        "operator": "eq",
-        "property_name": "event",
-        "property_value": "name"
-    }
-],
     interval: "hourly",
     targetProperty: "temperature",
     timeframe: "this_1_days",
