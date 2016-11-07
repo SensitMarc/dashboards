@@ -101,7 +101,7 @@
             Cell Title
           </div>
           <div class="chart-stage">
-            <div id="temperature">
+            <div id="data">
             </div>
           </div>
           <div class="chart-notes">
@@ -399,7 +399,56 @@ client.draw(leader, document.getElementById("leader"), {
         }
       });
 });
-    
+
+  // use a variable to ensure timeframe & interval for both queries match
+var interval = "hourly"
+var timeframe = "last_1_days"
+
+var pageviews = new Keen.Query("count", { // first query
+    eventCollection: "kWhr",
+    interval: interval,
+    timeframe: timeframe
+});
+
+var uniqueVisitors = new Keen.Query("maximum", { // second query
+    eventCollection: "temp",
+    targetProperty: "temperature",
+    interval: interval,
+    timeframe: timeframe
+});
+
+client.run([pageviews, uniqueVisitors], function(response){ // run the queries
+
+    var result1 = response[0].result  // data from first query
+    var result2 = response[1].result  // data from second query
+    var data = []  // place for combined results
+    var i=0
+
+    while (i < result1.length) {
+
+        data[i]={ // format the data so it can be charted
+            timeframe: result1[i]["timeframe"],
+            value: [
+                { category: "Pageviews", result: result1[i]["value"] },
+                { category: "Visitors", result: result2[i]["value"] }
+            ]
+        }
+        if (i == result1.length-1) { // chart the data
+            window.chart = new Keen.Visualization({result: data}, document.getElementById('pageviews'), {
+                chartType: "linechart",
+                title: " ",
+                chartOptions: {
+                    hAxis: {
+                        format:'MMM d',
+                        gridlines:  {count: 12}
+                    }
+                }
+            });
+        }
+        i++;
+    }
+});
+  
 </script>
 
 <div id='map'></div>
