@@ -408,14 +408,16 @@ Keen.ready(function(){
   var pageviews = new Keen.Query("count", { // first query
     event_collection: "kWhr",
     interval: interval,
-    timeframe: timeframe
+    timeframe: timeframe,
+    timezone: "America/Sao_Paulo"
   });
 
   var uniqueVisitors = new Keen.Query("maximum", { // second query
     event_collection: "temp",
     target_property: "temperature",
     interval: interval,
-    timeframe: timeframe
+    timeframe: timeframe,
+    timezone: "America/Sao_Paulo"
   });
 
   var chart = new Keen.Dataviz()
