@@ -403,7 +403,7 @@ client.draw(leader, document.getElementById("leader"), {
 Keen.ready(function(){
   // use a variable to ensure timeframe & interval for both queries match
   var interval = "hourly"
-  var timeframe = "last_1_days"
+  var timeframe = "this_1_days"
 
   var pageviews = new Keen.Query("count", { // first query
     event_collection: "kWhr",
