@@ -411,12 +411,7 @@ Keen.ready(function(){
     timeframe: timeframe
   });
 
-  var uniqueVisitors = new Keen.Query("count_unique", { // second query
-    event_collection: "temp",
-    target_property: "temperature",
-    interval: interval,
-    timeframe: timeframe
-  });
+  var uniqueVisitors = -2;
 
   var chart = new Keen.Dataviz()
     .el(document.getElementById("visitors-uniques"))
