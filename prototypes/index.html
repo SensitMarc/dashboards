@@ -101,7 +101,7 @@
             Cell Title
           </div>
           <div class="chart-stage">
-            <div id="data">
+            <div id="windowchart">
             </div>
           </div>
           <div class="chart-notes">
@@ -434,7 +434,7 @@ client.run([pageviews, uniqueVisitors], function(response){ // run the queries
             ]
         }
         if (i == result1.length-1) { // chart the data
-            window.chart = new Keen.Visualization({result: data}, document.getElementById('pageviews'), {
+            var windowchart = new Keen.Visualization({result: data}, document.getElementById('pageviews'), {
                 chartType: "linechart",
                 title: " ",
                 chartOptions: {
