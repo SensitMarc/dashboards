@@ -441,8 +441,8 @@ Keen.ready(function(){
         data[i]={ // format the data so it can be charted
             timeframe: result1[i]["timeframe"],
             value: [
-                { category: "Pageviews", result: result1[i]["value"] },
-                { category: "Visitors", result: result2[i]["value"] }
+                { category: "kWhr", result: result1[i]["value"] },
+                { category: "Outside temp", result: result2[i]["value"] }
             ]
         }
         if (i == result1.length-1) { // chart the data
