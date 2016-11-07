@@ -422,7 +422,9 @@ Keen.ready(function(){
     .el(document.getElementById("visitors-uniques"))
     .chartType("linechart")
     .chartOptions({
-
+        chartOptions: {
+            isStacked: true
+          }
     })
     .prepare();
 
