@@ -411,7 +411,7 @@ Keen.ready(function(){
     timeframe: timeframe
   });
 
-  var uniqueVisitors = new Keen.Query("count_unique", { // second query
+  var uniqueVisitors = new Keen.Query("maximum", { // second query
     event_collection: "temp",
     target_property: "temperature",
     interval: interval,
