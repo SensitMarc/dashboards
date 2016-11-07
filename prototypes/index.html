@@ -101,7 +101,7 @@
             Cell Title
           </div>
           <div class="chart-stage">
-            <div id="pageviews">
+            <div id="charty">
             </div>
           </div>
           <div class="chart-notes">
@@ -400,27 +400,39 @@ client.draw(leader, document.getElementById("leader"), {
       });
 });
 
+Keen.ready(function(){
   // use a variable to ensure timeframe & interval for both queries match
-var interval = "hourly"
-var timeframe = "last_1_days"
+  var interval = "daily"
+  var timeframe = "last_30_days"
 
-var pageviews = new Keen.Query("count", { // first query
-    eventCollection: "kWhr",
+  var pageviews = new Keen.Query("count", { // first query
+    event_collection: "kWhr",
     interval: interval,
     timeframe: timeframe
-});
+  });
 
-var uniqueVisitors = new Keen.Query("maximum", { // second query
-    eventCollection: "temp",
-    targetProperty: "temperature",
+  var uniqueVisitors = new Keen.Query("count_unique", { // second query
+    event_collection: "temp",
+    target_property: "temperature",
     interval: interval,
     timeframe: timeframe
-});
+  });
 
-client.run([pageviews, uniqueVisitors], function(response){ // run the queries
+  var charty = new Keen.Dataviz()
+    .el(document.getElementById("visitors-uniques"))
+    .chartType("linechart")
+    .chartOptions({
+      hAxis: {
+        format:'MMM d',
+        gridlines:  {count: 12}
+      }
+    })
+    .prepare();
 
-    var result1 = response[0].result  // data from first query
-    var result2 = response[1].result  // data from second query
+  client.run([pageviews, uniqueVisitors], function(err, res){ // run the queries
+
+    var result1 = res[0].result  // data from first query
+    var result2 = res[1].result  // data from second query
     var data = []  // place for combined results
     var i=0
 
@@ -434,20 +446,13 @@ client.run([pageviews, uniqueVisitors], function(response){ // run the queries
             ]
         }
         if (i == result1.length-1) { // chart the data
-            window.chart = new Keen.Visualization({result: data}, document.getElementById('pageviews'), {
-              library: "google",  
-              chartType: "linechart",
-                title: " ",
-                chartOptions: {
-                    hAxis: {
-                        format:'MMM d',
-                        gridlines:  {count: 12}
-                    }
-                }
-            });
+        chart
+          .parseRawData({ result: data })
+          .render();
         }
         i++;
     }
+  });
 });
   
 </script>
