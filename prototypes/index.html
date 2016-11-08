@@ -437,7 +437,9 @@ Keen.ready(function(){
     var result2 = res[1].result  // data from second query
     var data = []  // place for combined results
     var i=0
-  
+    
+    window.alert(result1 + result2);
+    
     while (i < result1.length) {
 
         data[i]={ // format the data so it can be charted
@@ -456,7 +458,7 @@ Keen.ready(function(){
     }
   });
 });
-   window.alert(result1 + 6);
+   
   
 </script>
 
