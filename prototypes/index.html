@@ -163,7 +163,6 @@ Keen.ready(function(){
     timezone: "America/Sao_Paulo"
   });
   
-  window.alert(today);
     
   var month = new Keen.Query("count", {
     eventCollection: "kWhr",
@@ -427,12 +426,12 @@ Keen.ready(function(){
     .chartType("columnchart")
     .width("auto")
     .chartOptions({
-        chartOptions: {
-            isStacked: true,
-            vAxis:{ 
+                  vAxis:{ 
               minValue: -30,
               maxValue: 40
-               }
+               },
+        chartOptions: {
+            isStacked: true,
           }
     })
     .prepare();
