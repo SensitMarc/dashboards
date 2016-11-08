@@ -163,6 +163,8 @@ Keen.ready(function(){
     timezone: "America/Sao_Paulo"
   });
   
+  window.alert(today);
+    
   var month = new Keen.Query("count", {
     eventCollection: "kWhr",
     filters: [
