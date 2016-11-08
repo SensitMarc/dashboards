@@ -115,7 +115,7 @@
             Cell Title
           </div>
           <div class="chart-stage">
-            <div id=" ">
+            <div id="EFF">
             </div>
           </div>
           <div class="chart-notes">
@@ -462,7 +462,67 @@ Keen.ready(function(){
   });
  
 });
-   
+ 
+  Keen.ready(function(){
+  // use a variable to ensure timeframe & interval for both queries match
+  var interval = "hourly"
+  var timeframe = "this_1_days"
+
+  var pageviews = new Keen.Query("count", { // first query
+    event_collection: "kWhr",
+    interval: interval,
+    timeframe: timeframe,
+    timezone: "America/Sao_Paulo"
+  });
+  
+  var uniqueVisitors = new Keen.Query("maximum", { // second query
+    event_collection: "temp",
+    target_property: "temperature",
+    interval: interval,
+    timeframe: timeframe,
+    timezone: "America/Sao_Paulo"
+  });
+
+  var chart = new Keen.Dataviz()
+    .el(document.getElementById("EFF"))
+    .chartType("columnchart")
+    .width("auto")
+    .chartOptions({
+                  vAxis:{ 
+              minValue: "auto",
+              maxValue: "auto"
+               },
+        chartOptions: {
+            isStacked: true,
+          }
+    })
+    .prepare();
+
+  client.run([pageviews, uniqueVisitors], function(err, res){ // run the queries
+
+    var result1 = res[0].result  // data from first query
+    var result2 = res[1].result  // data from second query
+    var data = []  // place for combined results
+    var i=0
+    
+    while (i < result1.length) {
+
+        data[i]={ // format the data so it can be charted
+            timeframe: result1[i]["timeframe"],
+        value: [
+          { category: "Efficiency", result: ( (result2[i]["value"]-20) - (result1[i]["value"]) ) / (result2[i]["value"]-20) }
+        ]
+        }
+        if (i == result1.length-1) { // chart the data
+        chart
+          .parseRawData({ result: data })
+          .render();
+        }
+        i++;
+    }
+  });
+ 
+});
       
 </script>
 
