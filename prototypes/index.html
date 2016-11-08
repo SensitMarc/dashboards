@@ -428,7 +428,11 @@ Keen.ready(function(){
     .width("auto")
     .chartOptions({
         chartOptions: {
-            isStacked: true
+            isStacked: true,
+            vAxis:{ 
+              minValue: -30,
+              maxValue: 40
+               }
           }
     })
     .prepare();
