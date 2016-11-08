@@ -510,7 +510,7 @@ Keen.ready(function(){
         data[i]={ // format the data so it can be charted
             timeframe: result1[i]["timeframe"],
         value: [
-          { category: "Efficiency", result:  ((20 - result2[i]["value"]) - result1[i]["value"]) / (20 - result2[i]["value"]) }
+          { category: "Efficiency", result:  (( result2[i]["value"]) - result1[i]["value"]) / (result2[i]["value"]) }
         ]
         }
         if (i == result1.length-1) { // chart the data
