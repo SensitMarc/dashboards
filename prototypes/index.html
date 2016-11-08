@@ -412,6 +412,8 @@ Keen.ready(function(){
     timezone: "America/Sao_Paulo"
   });
 
+   window.alert(pageviews);
+  
   var uniqueVisitors = new Keen.Query("maximum", { // second query
     event_collection: "temp",
     target_property: "temperature",
@@ -449,13 +451,11 @@ Keen.ready(function(){
         }
         if (i == result1.length-1) { // chart the data
         chart
-          window.alert(result1 + result2);
           .parseRawData({ result: data })
           .render();
         }
         i++;
     }
-
   });
  
 });
