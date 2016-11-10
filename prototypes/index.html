@@ -563,27 +563,28 @@ Keen.ready(function(){
   
     var sofarthismonth = new Keen.Query("count", { // first query
     event_collection: "kWhr",
-    interval: interval,
+//    interval: interval,
     timeframe: timeframe,
     timezone: "America/Sao_Paulo"
   });
     
   var sofarlastmonth = new Keen.Query("count", { // second query
     event_collection: "kWhr",
-    interval: interval,
+//    interval: interval,
     timeframe: timeframe,
     timezone: "America/Sao_Paulo"
   });
 
   var chart = new Keen.Dataviz()
     .el(document.getElementById("KPI"))
-    .chartType("linechart")
+    .chartType("metric")
     .width("auto")
+    .height:("250")
     .chartOptions({
-                  vAxis:{ 
-              minValue: "auto",
-              maxValue: "auto"
-               },
+  //                vAxis:{ 
+   //           minValue: "auto",
+   //           maxValue: "auto"
+   //            },
         chartOptions: {
             isStacked: true,
           }
