@@ -552,7 +552,7 @@ Keen.ready(function(){
   });
  
 });
-     /* 
+      
   Keen.ready(function(){
   
     var sofarthismonth = new Keen.Query("count", { // first query
@@ -594,7 +594,7 @@ Keen.ready(function(){
     while (i < result1.length) {
 
         data[i]={ // format the data so it can be charted
-            timeframe: result1[i]["previous_1_months"],
+            timeframe: result1[i]["timeframe"],
         
 value: [
                 { category: "sofarthismonth", result: result1[i]["value"] },
@@ -611,7 +611,7 @@ value: [
   });
  
 });
-  */
+  
   
 </script>
 
