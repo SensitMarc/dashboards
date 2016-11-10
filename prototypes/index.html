@@ -557,14 +557,14 @@ Keen.ready(function(){
   
     var sofarthismonth = new Keen.Query("count", { // first query
     event_collection: "kWhr",
-    interval= "daily",
+    interval: "daily",
     timeframe: "previous_1_months",
-    timezone: "America/Sao_Paulo"
+    timezone: "America/Sao_Paulo""
   });
-  
+    
   var sofarlastmonth = new Keen.Query("count", { // second query
     event_collection: "kWhr",
-   interval= "daily",
+    interval: "daily",
     timeframe: "previous_1_months",
     timezone: "America/Sao_Paulo"
   });
@@ -594,7 +594,7 @@ Keen.ready(function(){
     while (i < result1.length) {
 
         data[i]={ // format the data so it can be charted
-            timeframe: result1[i]["timeframe"],
+            timeframe: result1[i]["previous_1_months"],
         
 value: [
                 { category: "sofarthismonth", result: result1[i]["value"] },
