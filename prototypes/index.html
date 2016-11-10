@@ -561,7 +561,7 @@ Keen.ready(function(){
   var sofarthismonth = new Keen.Query("count", { // first query
     event_collection: "kWhr",
     interval= "daily",
-    timeframe: "this_1_months",
+    timeframe: "previous_1_months",
     timezone: "America/Sao_Paulo"
   });
   
@@ -574,7 +574,7 @@ Keen.ready(function(){
 
   var chart = new Keen.Dataviz()
     .el(document.getElementById("KPI"))
-    .chartType("metric")
+    .chartType("areachart")
     .width("auto")
     .chartOptions({
                   vAxis:{ 
