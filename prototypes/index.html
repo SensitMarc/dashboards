@@ -124,6 +124,35 @@
         </div>
       </div>
     
+<div class="row">
+      <div class="col-sm-8">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Cell Title
+          </div>
+          <div class="chart-stage">
+            <div id="KPI">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="chart-wrapper">
+          <div class="chart-title">
+            Cell Title
+          </div>
+          <div class="chart-stage">
+            <div id="EFF">
+            </div>
+          </div>
+          <div class="chart-notes">
+            Notes about this chart
+          </div>
+        </div>
+      </div>
       <hr>
 
 <p class="small text-muted">   Built with &#9829; by <a href="http://sensee.ca">sensee.ca</a></p>
@@ -524,6 +553,67 @@ Keen.ready(function(){
  
 });
       
+  Keen.ready(function(){
+  // use a variable to ensure timeframe & interval for both queries match
+  var interval = "hourly"
+  var timeframe = "this_1_days"
+
+  var sofarthismonth = new Keen.Query("count", { // first query
+    event_collection: "kWhr",
+    interval: interval,
+    timeframe: "this_1_months",
+    timezone: "America/Sao_Paulo"
+  });
+  
+  var sofarlastmonth = new Keen.Query("count", { // second query
+    event_collection: "kWhr",
+    interval: interval,
+    timeframe: "previous_1_months",
+    timezone: "America/Sao_Paulo"
+  });
+
+  var chart = new Keen.Dataviz()
+    .el(document.getElementById("KPI"))
+    .chartType("areachart")
+    .width("auto")
+    .chartOptions({
+                  vAxis:{ 
+              minValue: "auto",
+              maxValue: "auto"
+               },
+        chartOptions: {
+            isStacked: true,
+          }
+    })
+    .prepare();
+
+  client.run([sofarthismonth, sofarlastmonth], function(err, res){ // run the queries
+
+    var result1 = res[0].result  // data from first query
+    var result2 = res[1].result  // data from second query
+    var data = []  // place for combined results
+    var i=0
+    
+    while (i < result1.length) {
+
+        data[i]={ // format the data so it can be charted
+            timeframe: result1[i]["this_1_months"],
+        
+value: [
+                { category: "sofarthismonth", result: result1[i]["value"] },
+                { category: sofarlastmonth", result: result2[i]["value"] }
+            ]
+        }
+        if (i == result1.length-1) { // chart the data
+        chart
+          .parseRawData({ result: data })
+          .render();
+        }
+        i++;
+    }
+  });
+ 
+});
 </script>
 
 <div id='map'></div>
