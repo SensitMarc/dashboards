@@ -553,72 +553,83 @@ Keen.ready(function(){
  
 });
      
-  Keen.ready(function(){
+Keen.ready(function(){
+    var after_project_page = new Keen.Query("count", {
+        eventCollection: "kWhr",
+        timeframe: "previous_12_days",
+        interval: "daily",
+        timezone: "America/Sao_Paulo"
+    });
     
-    // use a variable to ensure timeframe & interval for both queries match
-  var interval = "daily"
-  var timeframe = "this_1_months"
-  
-  var timeframe2 = "this_1_months"
-  
-    var sofarthismonth = new Keen.Query("count", { // first query
-    event_collection: "kWhr",
-    interval: interval,
-    timeframe: timeframe,
-    timezone: "America/Sao_Paulo"
-  });
+    var on_project_page = new Keen.Query("count", {
+        eventCollection: "kWhr",
+        timeframe: "this_12_days",
+        interval: "daily",
+        timezone: "America/Sao_Paulo"
+    });
     
-  var sofarlastmonth = new Keen.Query("count", { // second query
-    event_collection: "kWhr",
-    interval: interval,
-    timeframe: timeframe,
-    timezone: "America/Sao_Paulo"
-  });
-
-  var chart = new Keen.Dataviz()
-    .el(document.getElementById("KPI"))
-    .chartType("linechart")
-    .width("auto")
- //   .height:("250")
-    .chartOptions({
-                  vAxis:{ 
-              minValue: "auto",
-              maxValue: "auto"
-               },
-        chartOptions: {
-            isStacked: true,
-          }
-    })
-    .prepare();
-
-  client.run([sofarthismonth, sofarlastmonth], function(err, res){ // run the queries
-
-    var result1 = res[0].result  // data from first query
-    var result2 = res[1].result  // data from second query
-    var data = []  // place for combined results
-    var i=0
-    
-    while (i < result1.length) {
-
-        data[i]={ // format the data so it can be charted
-            timeframe: result1[i]["timeframe"],
+    var chart = new Keen.Dataviz()
+        .library("c3")
+        .chartType("line")
+        .el(document.getElementById("chart"))
+        .height(300)
+        .colors(['#FFC7CB', '#ABD2D9', '#222222'])
+        .chartOptions({
+            data: {
+            	axes: {
+              	'Bounce Rate': 'y2'
+              }
+            },
+            axis: {
+                x: {
+                    type: 'timeseries',
+            
+                    tick: {
+                        format: '%Y-%m-%d'
+                    }
+                },
+                y2: {
+                  show: true,
         
-value: [
-                { category: "sofarthismonth", result: result1[i]["value"] }
-          //      { category: "sofarlastmonth", result: result2[i]["value"] }
+                }
+            },
+            tooltip: {
+            	format: {
+              	value: function(name, ratio, id, index) {
+                  if(id === 'Bounce Rate') {
+                  	return name.toFixed(2) + "%"
+                  } else {
+                  	return name;
+                  }
+                }
+              }
+            }
+        })
+        .prepare();
+    
+    client.run([on_project_page, after_project_page], function(err, res){
+    		var result1 = res[0].result
+        var result2 = res[1].result
+        var data = []
+        var i = 0
+        
+        while (i < result1.length) {
+        	data[i] = {
+          	timeframe: result1[i].timeframe,
+            value: [
+            	{ category: 'Project Page', result: result1[i].value },
+              { category: 'After Project Page', result: result2[i].value },
+              { category: 'Bounce Rate', result: (1 - (result2[i].value / result1[i].value)) * 100 }
             ]
+          }
+          
+          i++;
         }
-        if (i == result1.length-1) { // chart the data
         chart
-          .parseRawData({ result: data })
+        	.parseRawData({ result: data })
           .render();
-        }
-        i++;
-    }
-  });
- 
+    });
 });
-  
   
 </script>
 
