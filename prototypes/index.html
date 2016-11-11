@@ -564,14 +564,14 @@ Keen.ready(function(){
 Keen.ready(function(){
     var after_project_page = new Keen.Query("count", {
         eventCollection: "kWhr",
-        timeframe: "previous_12_days",
+        timeframe: "previous_30_days",
         interval: "daily",
         timezone: "America/Sao_Paulo"
     });
     
     var on_project_page = new Keen.Query("count", {
         eventCollection: "kWhr",
-        timeframe: "this_12_days",
+        timeframe: "this_30_days",
         interval: "daily",
         timezone: "America/Sao_Paulo"
     });
