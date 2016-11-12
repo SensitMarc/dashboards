@@ -326,14 +326,29 @@ Keen.ready(function(){
     timezone: "America/Sao_Paulo"
   });
     
-     var perc = new Keen.Dataviz()
+    var perc = new Keen.Dataviz()
   .el(document.getElementById('perc'))
-   .parseRawData({ result: result1[i].value})
+  .parseRawData({ result: 1896 })
   .chartType("metric")
   .colors(["#6ab975"])
   .title("Wow!")
   .width(400)
   .render();
+  
+//  var perc = {200};
+     /* new Keen.Query("count", {
+    eventCollection: "kWhr",
+    filters: [
+    {
+        "operator": "eq",
+        "property_name": "coreid",
+        "property_value": "48ff6e065067555013541287"
+    }
+],
+    timeframe: "this_1_days",
+    timezone: "America/Sao_Paulo"
+  });
+  */
       
        // and draw a column chart
      client.draw(today, document.getElementById("mychart"), {
@@ -430,7 +445,6 @@ client.draw(leader, document.getElementById("leader"), {
           }
         }
       });
-
   
   client.draw(temperature, document.getElementById("temperature"), {
         chartType: "linechart",
@@ -458,12 +472,10 @@ client.draw(leader, document.getElementById("leader"), {
   
 });
   
-
 Keen.ready(function(){
   // use a variable to ensure timeframe & interval for both queries match
   var interval = "hourly"
   var timeframe = "this_1_days"
-
   var pageviews = new Keen.Query("count", { // first query
     event_collection: "kWhr",
     interval: interval,
@@ -478,7 +490,6 @@ Keen.ready(function(){
     timeframe: timeframe,
     timezone: "America/Sao_Paulo"
   });
-
   var chart = new Keen.Dataviz()
     .el(document.getElementById("visitors-uniques"))
     .chartType("areachart")
@@ -493,16 +504,13 @@ Keen.ready(function(){
           }
     })
     .prepare();
-
   client.run([pageviews, uniqueVisitors], function(err, res){ // run the queries
-
     var result1 = res[0].result  // data from first query
     var result2 = res[1].result  // data from second query
     var data = []  // place for combined results
     var i=0
     
     while (i < result1.length) {
-
         data[i]={ // format the data so it can be charted
             timeframe: result1[i]["timeframe"],
             value: [
@@ -525,7 +533,6 @@ Keen.ready(function(){
   // use a variable to ensure timeframe & interval for both queries match
   var interval = "hourly"
   var timeframe = "this_1_days"
-
   var pageviews = new Keen.Query("count", { // first query
     event_collection: "kWhr",
     interval: interval,
@@ -540,7 +547,6 @@ Keen.ready(function(){
     timeframe: timeframe,
     timezone: "America/Sao_Paulo"
   });
-
   var chart = new Keen.Dataviz()
     .el(document.getElementById("EFF"))
     .chartType("areachart")
@@ -555,16 +561,13 @@ Keen.ready(function(){
           }
     })
     .prepare();
-
   client.run([pageviews, uniqueVisitors], function(err, res){ // run the queries
-
     var result1 = res[0].result  // data from first query
     var result2 = res[1].result  // data from second query
     var data = []  // place for combined results
     var i=0
     
     while (i < result1.length) {
-
         data[i]={ // format the data so it can be charted
             timeframe: result1[i]["timeframe"],
         value: [
@@ -596,8 +599,7 @@ Keen.ready(function(){
         interval: "daily",
         timezone: "America/Sao_Paulo"
     });
-                 
-          
+    
     var chart = new Keen.Dataviz()
         .library("c3")
         .chartType("line")
@@ -634,12 +636,8 @@ Keen.ready(function(){
                 }
               }
             }
-            
         })
-   
-
-                 
-   .prepare();
+        .prepare();
     
     client.run([this_month, last_month], function(err, res){
     		var result1 = res[0].result
@@ -659,18 +657,13 @@ Keen.ready(function(){
           
           i++;
         }
-          
         chart
-        	.parseRawData({ result: data})
+        	.parseRawData({ result: data })
           .render();
     });
 });
   
 </script>
-
-<div id='map'></div>
-
-<script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2Vuc2l0IiwiYSI6ImNpZ2hwb2VlbTgzbjJ2OG03ZmhweGNqZzAifQ.YCcLyhXq7MXpRJDXojNtCg';
 var map = new mapboxgl.Map({
     container: 'map',
