@@ -147,7 +147,7 @@
             Cell Title
           </div>
           <div class="chart-stage">
-            <div id="percentage">
+            <div id="perc">
             </div>
           </div>
           <div class="chart-notes">
@@ -326,8 +326,16 @@ Keen.ready(function(){
     timezone: "America/Sao_Paulo"
   });
     
+    var perc = new Keen.Dataviz()
+  .el(document.getElementById('perc'))
+  .parseRawData({ result: 1896 })
+  .chartType("metric")
+  .colors(["#6ab975"])
+  .title("Wow!")
+  .width(400)
+  .render();
   
-  var perc = {200};
+//  var perc = {200};
      /* new Keen.Query("count", {
     eventCollection: "kWhr",
     filters: [
@@ -462,6 +470,7 @@ client.draw(leader, document.getElementById("leader"), {
           }
         }
       });
+  
 });
   
 
