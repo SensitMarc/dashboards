@@ -326,6 +326,14 @@ Keen.ready(function(){
     timezone: "America/Sao_Paulo"
   });
     
+     var perc = new Keen.Dataviz()
+  .el(document.getElementById('perc'))
+   .parseRawData({ result: result1[i].value})
+  .chartType("metric")
+  .colors(["#6ab975"])
+  .title("Wow!")
+  .width(400)
+  .render();
       
        // and draw a column chart
      client.draw(today, document.getElementById("mychart"), {
@@ -589,7 +597,7 @@ Keen.ready(function(){
         timezone: "America/Sao_Paulo"
     });
                  
-/*            
+          
     var chart = new Keen.Dataviz()
         .library("c3")
         .chartType("line")
@@ -628,10 +636,10 @@ Keen.ready(function(){
             }
             
         })
-    */
+   
 
                  
- //   .prepare();
+   .prepare();
     
     client.run([this_month, last_month], function(err, res){
     		var result1 = res[0].result
@@ -651,17 +659,9 @@ Keen.ready(function(){
           
           i++;
         }
-   var chart = new Keen.Dataviz()
-  .el(document.getElementById('perc'))
-   .parseRawData({ result: result1[i].value})
-  .chartType("metric")
-  .colors(["#6ab975"])
-  .title("Wow!")
-  .width(400)
-  .render();
           
         chart
-        	.parseRawData({ result: 3434})
+        	.parseRawData({ result: data})
           .render();
     });
 });
