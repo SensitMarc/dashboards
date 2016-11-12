@@ -629,17 +629,9 @@ Keen.ready(function(){
             
         })
     */
-    var chart = new Keen.Dataviz()
-  .el(document.getElementById('perc'))
-  //.parseRawData({ result: 1245})
-  .chartType("metric")
-  .colors(["#6ab975"])
-  .title("Wow!")
-  .width(400)
-//  .render();
 
                  
-    .prepare();
+ //   .prepare();
     
     client.run([this_month, last_month], function(err, res){
     		var result1 = res[0].result
@@ -659,9 +651,18 @@ Keen.ready(function(){
           
           i++;
         }
-        chart
-        	.parseRawData({ result: result1})
-          .render();
+   var chart = new Keen.Dataviz()
+  .el(document.getElementById('perc'))
+  .parseRawData({ result: result1[i].value})
+  .chartType("metric")
+  .colors(["#6ab975"])
+  .title("Wow!")
+  .width(400)
+  .render();
+          
+   //     chart
+    //    	.parseRawData({ result: result1})
+    //      .render();
     });
 });
   
