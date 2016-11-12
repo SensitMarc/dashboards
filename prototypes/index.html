@@ -588,7 +588,7 @@ Keen.ready(function(){
         .chartOptions({
             data: {
             	axes: {
-              	'Bounce Rate': 'y2'
+              	'Difference': 'y2'
               }
             },
             axis: {
@@ -607,7 +607,7 @@ Keen.ready(function(){
             tooltip: {
             	format: {
               	value: function(name, ratio, id, index) {
-                  if(id === 'Bounce Rate') {
+                  if(id === 'Difference') {
                   	return name.toFixed(2) + "%"
                   } else {
                   	return name;
