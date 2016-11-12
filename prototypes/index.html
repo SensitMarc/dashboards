@@ -653,15 +653,15 @@ Keen.ready(function(){
         }
    var chart = new Keen.Dataviz()
   .el(document.getElementById('perc'))
-//  .parseRawData({ result: result1[i].value})
+   .parseRawData({ result: result1[i].value})
   .chartType("metric")
   .colors(["#6ab975"])
   .title("Wow!")
   .width(400)
-//  .render();
+  .render();
           
         chart
-        	.parseRawData({ result: result1[i].value})
+        	.parseRawData({ result: 3434})
           .render();
     });
 });
