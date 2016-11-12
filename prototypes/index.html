@@ -328,7 +328,7 @@ Keen.ready(function(){
     
     var perc = new Keen.Dataviz()
   .el(document.getElementById('perc'))
-  .parseRawData({ result: "result1" })
+  .parseRawData({ result: result1[i]["value"] })
   .chartType("metric")
   .colors(["#6ab975"])
   .title("Wow!")
