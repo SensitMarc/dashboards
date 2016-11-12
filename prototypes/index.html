@@ -567,14 +567,14 @@ Keen.ready(function(){
 Keen.ready(function(){
     var last_month = new Keen.Query("count", {
         eventCollection: "kWhr",
-        timeframe: "previous_30_days",
+        timeframe: "previous_4_weeks",
         interval: "daily",
         timezone: "America/Sao_Paulo"
     });
     
     var this_month = new Keen.Query("count", {
         eventCollection: "kWhr",
-        timeframe: "this_30_days",
+        timeframe: "this_4_weeks",
         interval: "daily",
         timezone: "America/Sao_Paulo"
     });
