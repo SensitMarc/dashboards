@@ -565,14 +565,14 @@ Keen.ready(function(){
 });
      
 Keen.ready(function(){
-    var after_project_page = new Keen.Query("count", {
+    var last_month = new Keen.Query("count", {
         eventCollection: "kWhr",
         timeframe: "previous_30_days",
         interval: "daily",
         timezone: "America/Sao_Paulo"
     });
     
-    var on_project_page = new Keen.Query("count", {
+    var this_month = new Keen.Query("count", {
         eventCollection: "kWhr",
         timeframe: "this_30_days",
         interval: "daily",
@@ -618,7 +618,7 @@ Keen.ready(function(){
         })
         .prepare();
     
-    client.run([on_project_page, after_project_page], function(err, res){
+    client.run([this_month, last_month], function(err, res){
     		var result1 = res[0].result
         var result2 = res[1].result
         var data = []
