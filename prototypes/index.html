@@ -605,7 +605,7 @@ Keen.ready(function(){
         timezone: "America/Sao_Paulo"
     });
     
-      var perc = new Keen.Dataviz()
+   var perc = new Keen.Dataviz()
   .el(document.getElementById('perc'))
   .parseRawData({ result: 1111})
   .chartType("metric")
@@ -614,7 +614,7 @@ Keen.ready(function(){
   .width(400)
   .render();
                  
-  /*               
+/*             
     var chart = new Keen.Dataviz()
         .library("c3")
         .chartType("line")
@@ -675,9 +675,9 @@ Keen.ready(function(){
           
           i++;
         }
-        chart
-        	.parseRawData({ result: data })
-          .render();
+       // chart
+       // 	.parseRawData({ result: data })
+       //   .render();
     });
 });
   
