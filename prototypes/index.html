@@ -625,9 +625,9 @@ Keen.ready(function(){
         	data[i] = {
           	timeframe: result1[i].timeframe,
             value: [
-            	{ category: 'Project Page', result: result1[i].value },
-              { category: 'After Project Page', result: result2[i].value },
-              { category: 'Bounce Rate', result: (1 - (result2[i].value / result1[i].value)) * 100 }
+            	{ category: 'this month', result: result1[i].value },
+              { category: 'last month', result: result2[i].value },
+              { category: 'difference', result: (1 - (result2[i].value / result1[i].value)) * 100 }
             ]
           }
           
