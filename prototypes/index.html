@@ -327,7 +327,8 @@ Keen.ready(function(){
   });
     
   
-  var perc = new Keen.Query("count", {
+  var perc = "200";
+     /* new Keen.Query("count", {
     eventCollection: "kWhr",
     filters: [
     {
@@ -339,7 +340,8 @@ Keen.ready(function(){
     timeframe: "this_1_days",
     timezone: "America/Sao_Paulo"
   });
-  
+  */
+      
        // and draw a column chart
      client.draw(today, document.getElementById("mychart"), {
         chartType: "metric",
