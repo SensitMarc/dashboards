@@ -636,10 +636,10 @@ Keen.ready(function(){
   .colors(["#6ab975"])
   .title("Wow!")
   .width(400)
-  //.render();
+//  .render();
 
                  
-        .prepare();
+    .prepare();
     
     client.run([this_month, last_month], function(err, res){
     		var result1 = res[0].result
@@ -660,7 +660,7 @@ Keen.ready(function(){
           i++;
         }
         chart
-        	.parseRawData({ result: result1[i].value })
+        	.parseRawData({ result: 2})
           .render();
     });
 });
