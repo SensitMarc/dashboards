@@ -609,25 +609,24 @@ Keen.ready(function(){
         .chartOptions({
             data: {
             	axes: {
-              	'difference': 'y2'
+              	'Difference': 'y2',
               }
             },
             axis: {
                 x: {
                     type: 'timeseries',
-            
                     tick: {
                         format: '%Y-%m-%d'
                     }
                 },
                 y2: {
-                  show: true,
+                  show: true
                 }
             },
             tooltip: {
             	format: {
               	value: function(name, ratio, id, index) {
-                  if(id === 'difference') {
+                  if(id === 'Difference') {
                   	return name.toFixed(2) + "%"
                   } else {
                   	return name;
@@ -650,7 +649,7 @@ Keen.ready(function(){
             value: [
             	{ category: 'this month', result: result1[i].value },
               { category: 'last month', result: result2[i].value },
-              { category: 'difference', result: (1 - (result2[i].value / result1[i].value)) * 100 }
+              { category: 'Difference', result: (1 - (result2[i].value / result1[i].value)) * 100 }
             ]
           }
           
