@@ -609,7 +609,7 @@ Keen.ready(function(){
         .chartOptions({
             data: {
             	axes: {
-              	'Difference': 'y2'
+              	'difference': 'y2'
               }
             },
             axis: {
@@ -622,13 +622,12 @@ Keen.ready(function(){
                 },
                 y2: {
                   show: true,
-        
                 }
             },
             tooltip: {
             	format: {
               	value: function(name, ratio, id, index) {
-                  if(id === 'Difference') {
+                  if(id === 'difference') {
                   	return name.toFixed(2) + "%"
                   } else {
                   	return name;
