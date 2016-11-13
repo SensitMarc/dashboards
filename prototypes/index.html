@@ -600,17 +600,17 @@ Keen.ready(function(){
         timezone: "America/Sao_Paulo"
     });
     
-    var chart = new Keen.Dataviz()
+        var chart = new Keen.Dataviz()
         .library("c3")
         .chartType("line")
-        .el(document.getElementById("KPI"))
+        .el(document.getElementById("chart"))
         .height(300)
         .colors(['#FFC7CB', '#ABD2D9', '#222222'])
         .chartOptions({
             data: {
             	axes: {
-              	'Difference': 'y2'
-              }
+              	'difference': 'y2'
+               }         
             },
             axis: {
                 x: {
@@ -626,7 +626,7 @@ Keen.ready(function(){
             tooltip: {
             	format: {
               	value: function(name, ratio, id, index) {
-                  if(id === 'Difference') {
+                  if(id === 'difference') {
                   	return name.toFixed(2) + "%"
                   } else {
                   	return name;
