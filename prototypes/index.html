@@ -592,14 +592,9 @@ Keen.ready(function(){
         .height(300)
         .colors(['#FFC7CB', '#ABD2D9', '#222222'])
         .chartOptions({
-                          vAxis:{ 
-              minValue: "auto",
-              maxValue: "auto"
-               },
             data: {
             	axes: {
               	'Difference': 'y2',
-
                }         
             },
             axis: {
@@ -639,7 +634,7 @@ Keen.ready(function(){
             value: [
             	{ category: 'this month', result: result1[i].value },
               { category: 'last month', result: result2[i].value },
-              { category: 'Difference', result: (1 - (result2[i].value / result1[i].value)) * 100 }
+              { category: 'Difference', result: (1 - (result1[i].value / result2[i].value)) * 100 }
             ]
           }
           
