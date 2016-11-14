@@ -331,24 +331,9 @@ Keen.ready(function(){
   .parseRawData({ result: 1896 })
   .chartType("metric")
   .colors(["#6ab975"])
-  .title("Wow!")
+  .title("CO2")
   .width(400)
   .render();
-  
-//  var perc = {200};
-     /* new Keen.Query("count", {
-    eventCollection: "kWhr",
-    filters: [
-    {
-        "operator": "eq",
-        "property_name": "coreid",
-        "property_value": "48ff6e065067555013541287"
-    }
-],
-    timeframe: "this_1_days",
-    timezone: "America/Sao_Paulo"
-  });
-  */
       
        // and draw a column chart
      client.draw(today, document.getElementById("mychart"), {
@@ -602,7 +587,7 @@ Keen.ready(function(){
     
         var chart = new Keen.Dataviz()
         .library("c3")
-        .chartType("linechart")
+        .chartType("line")
         .el(document.getElementById("KPI"))
         .height(300)
         .colors(['#FFC7CB', '#ABD2D9', '#222222'])
