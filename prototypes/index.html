@@ -592,9 +592,14 @@ Keen.ready(function(){
         .height(300)
         .colors(['#FFC7CB', '#ABD2D9', '#222222'])
         .chartOptions({
+                          vAxis:{ 
+              minValue: "auto",
+              maxValue: "auto"
+               },
             data: {
             	axes: {
-              	'Difference': 'y2'
+              	'Difference': 'y2',
+
                }         
             },
             axis: {
@@ -605,7 +610,7 @@ Keen.ready(function(){
                     }
                 },
                 y2: {
-                  show: false
+                  show: true,
                 }
             },
             tooltip: {
